@@ -1,0 +1,367 @@
+:root {
+  --dark-grey: hsl(248, 10%, 15%);
+  --dark-grey-tone1: hsl(248, 15%, 11%);
+  --grey: hsl(251, 9%, 53%);
+  --neon-green: hsl(127, 100%, 82%);
+  --white-tint-1: hsl(252, 11%, 91%);
+  --background-primary: hsl(248, 17%, 9%);
+  --background-secondary: hsl(255, 22%, 4%);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+@font-face {
+  font-family: "JetBrainsMono";
+  src: url("../assets/fonts/static/JetBrainsMono-Bold.ttf") format("truetype");
+}
+
+body {
+  background: linear-gradient(
+    180deg,
+    var(--background-primary) 0%,
+    var(--background-secondary) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  font-family: "JetBrainsMono";
+  justify-content: center;
+  min-height: 100vh;
+}
+
+input,
+button {
+  font: inherit;
+}
+
+button[disabled] {
+  cursor: not-allowed;
+}
+
+.container {
+  margin: 0 auto;
+  width: 90%;
+}
+
+.app-title {
+  font-size: 2rem;
+  text-align: center;
+  color: var(--grey);
+  margin-bottom: 3.2rem;
+}
+
+p {
+  color: var(--white-tint-1);
+  font-size: 1.6rem;
+}
+
+.password-display__wrapper {
+  align-items: center;
+  background-color: var(--dark-grey);
+  display: flex;
+  height: 64px;
+  justify-content: space-between;
+  padding: 0 2rem;
+  margin-bottom: 2.4rem;
+}
+
+.password-display {
+  background: transparent;
+  border: none;
+  color: var(--white-tint-1);
+  font-size: 2.4rem;
+  width: 50%;
+}
+
+.password-display::placeholder {
+  opacity: 0.25;
+}
+
+/* remove lastpass styling */
+[data-lastpass-icon-root] {
+  display: none;
+}
+
+.copy-btn__wrapper {
+  align-items: center;
+  display: flex;
+  gap: 1.6rem;
+}
+
+.copied-notification {
+  color: var(--neon-green);
+  font-size: 1.6rem;
+  text-transform: uppercase;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.copy-btn {
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.copy-btn:hover img {
+  filter: contrast(3.5);
+}
+
+.password-choices {
+  padding: 2.4rem 3.2rem 3.2rem;
+  background-color: var(--dark-grey);
+}
+
+.password-length__wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2.2rem;
+}
+
+.password-length {
+  font-size: 2.4rem;
+  color: var(--neon-green);
+}
+
+.password-length__slider {
+  appearance: none;
+  margin-right: 15px;
+  width: 100%;
+  height: 7px;
+  margin-bottom: 3.6rem;
+  background: var(--dark-grey-tone1);
+  background-image: linear-gradient(var(--neon-green), var(--neon-green));
+  background-size: 50% 100%;
+  background-repeat: no-repeat;
+}
+
+.password-length__slider::-webkit-slider-thumb {
+  appearance: none;
+  height: 28px;
+  width: 28px;
+  border: 2px solid var(--white-tint-1);
+  border-radius: 50%;
+  background-color: var(--white-tint-1);
+  cursor: pointer;
+}
+
+.password-length__slider::-webkit-slider-thumb:hover {
+  border: 2px solid var(--neon-green);
+  background-color: var(--dark-grey-tone1);
+}
+
+.password-length__slider::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+
+.password-length__slider::-moz-range-thumb {
+  -moz-appearance: none;
+  height: 28px;
+  width: 28px;
+  border: 2px solid var(--white-tint-1);
+  border-radius: 50%;
+  background-color: var(--white-tint-1);
+  cursor: pointer;
+}
+
+.password-length__slider::-moz-range-thumb:hover,
+.password-length__slider::-moz-range-thumb:active {
+  border: 2px solid var(--neon-green);
+  background-color: var(--dark-grey-tone1);
+}
+
+.password-settings_wrapper {
+  background-color: var(--dark-grey);
+  padding: 2rem;
+}
+
+.password-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 3.4rem;
+}
+
+label {
+  display: block;
+  padding-left: 4.4rem;
+  position: relative;
+}
+
+input[type="checkbox"] {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  top: 2px;
+  left: 0;
+
+  height: 2rem;
+  width: 2rem;
+  border: 2px solid var(--white-tint-1);
+  cursor: pointer;
+}
+
+.custom-checkbox::after {
+  display: none;
+  content: url("../assets/images/icon-check.svg");
+  position: absolute;
+  top: 3px;
+}
+
+.custom-checkbox:hover {
+  border-color: var(--neon-green);
+}
+
+input[type="checkbox"]:checked ~ .custom-checkbox {
+  border-color: var(--neon-green);
+  background-color: var(--neon-green);
+}
+
+input[type="checkbox"]:checked ~ .custom-checkbox::after {
+  display: block;
+}
+
+input[type="checkbox"]:focus ~ .custom-checkbox {
+  outline: 2px solid Highlight;
+  outline: 2px solid -webkit-focus-ring-color;
+}
+
+.password-strength__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  color: var(--grey);
+
+  margin-bottom: 3.2rem;
+  padding: 0 1.6rem;
+
+  height: 7.2rem;
+  background-color: var(--dark-grey-tone1);
+}
+
+.password-strength-rating__wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+}
+
+.password-strength-rating {
+  color: var(--white-tint-1);
+}
+
+.password-strength-rating__indicator {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.indicator {
+  width: 1rem;
+  height: 2.8rem;
+  border: 2px solid var(--white-tint-1);
+  background: none;
+}
+
+.generate-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.2rem;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  color: var(--dark-grey);
+
+  width: 100%;
+  padding: 1.5rem 0;
+  border: 2px solid var(--neon-green);
+  background-color: var(--neon-green);
+  cursor: pointer;
+}
+
+.generate-btn:hover {
+  color: var(--neon-green);
+  background-color: var(--dark-grey);
+}
+
+.generate-btn:hover path {
+  fill: var(--neon-green);
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 54rem;
+  }
+
+  .app-title {
+    font-size: 2.4rem;
+  }
+
+  p {
+    font-size: 1.8rem;
+  }
+
+  .password-display__wrapper {
+    padding: 0 3.2rem;
+  }
+
+  .password-display {
+    height: 8rem;
+  }
+
+  .copied-notification {
+    font-size: 1.8rem;
+  }
+
+  .password-length {
+    font-size: 3.2rem;
+  }
+
+  .password-settings_wrapper {
+    padding: 3.2rem;
+  }
+
+  .password-strength__wrapper {
+    font-size: 1.8rem;
+    padding: 0 3.2rem;
+  }
+
+  .generate-btn {
+    padding: 1.6rem 0;
+    font-size: 1.8rem;
+  }
+}
